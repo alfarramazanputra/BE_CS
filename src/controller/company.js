@@ -20,7 +20,7 @@ const getAlldataCompany = async (req,res) => {
 //     const { body } = req;
 
 //     // Memeriksa apakah semua data telah diisi
-//     const requiredFields = ['company_name', 'image_company', 'tittle_company', 'description_company', 'client', 'sponsor', 'rating', 'image_about', 'description_about', 'tittle_history', 'description_history', 'image_history', 'tittle_profile', 'description_profile', 'image_profile', 'visi', 'misi', 'image_culture', 'tittle_culture', 'description_culture', 'image_sponsors', 'no_wa', 'no_telephone', 'email', 'addres', 'link_linkedin', 'link_ig', 'link_youtube', 'link_telegram', 'link_map'];
+//     const requiredFields = ['company_name', 'image_company', 'tittle_company', 'description_company', 'client', 'sponsor', 'rating', 'image_about', 'description_about', 'tittle_history', 'description_history', 'image_history', 'tittle_profile', 'description_profile', 'image_profile', 'visi', 'misi', 'image_culture', 'tittle_culture', 'description_culture', 'image_client', 'no_wa', 'no_telephone', 'email', 'addres', 'link_linkedin', 'link_ig', 'link_youtube', 'link_telegram', 'link_map'];
 
 //     for (const field of requiredFields) {
 //         if (!body[field]) {
@@ -46,13 +46,13 @@ const getAlldataCompany = async (req,res) => {
 
 // const createDataCompany = async (req, res) => {
 //     const { company_name, tittle_company, description_company, client, sponsor, rating, description_about, tittle_history, description_history, tittle_profile, description_profile, visi, misi, tittle_culture, description_culture, no_wa, no_telephone, email, addres, link_linkedin, link_ig, link_youtube, link_telegram, link_map } = req.body;
-//     // const { image_company, image_about, image_history, image_profile, image_culture, image_sponsors } = req.files;
+//     // const { image_company, image_about, image_history, image_profile, image_culture, image_client } = req.files;
 //     const imageCompanyPath = req.file.path;
 //     const imageAboutPath = req.file.path;
 //     const imageHistoryPath = req.file.path;
 //     const imageProfilePath = req.file.path;
 //     const imageCulturePath = req.file.path;
-//     const imageSponsorsPath = req.file.path;
+//     const imageponsorsPath = req.file.path;
 
 //     try {
 //         // Mendapatkan path untuk setiap file yang diunggah
@@ -62,7 +62,7 @@ const getAlldataCompany = async (req,res) => {
 //         // const imageHistoryPath = image_history.map(image => image.path);
 //         // const imageProfilePath = image_profile.map(image => image.path);
 //         // const imageCulturePath = image_culture.map(image => image.path);
-//         // const imageSponsorsPath = image_sponsors.map(image => image.path);
+//         // const imageponsorsPath = image_client.map(image => image.path);
 
 //         await companyModels.createDataCompany(
 //             company_name,
@@ -85,7 +85,7 @@ const getAlldataCompany = async (req,res) => {
 //             imageCulturePath,
 //             tittle_culture,
 //             description_culture,
-//             imageSponsorsPath,
+//             imageponsorsPath,
 //             no_wa,
 //             no_telephone,
 //             email,
@@ -120,7 +120,89 @@ const getAlldataCompany = async (req,res) => {
 //                 image_culture: imageCulturePath,
 //                 tittle_culture,
 //                 description_culture,
-//                 image_sponsors: imageSponsorsPath,
+//                 image_client: imageponsorsPath,
+//                 no_wa,
+//                 no_telephone,
+//                 email,
+//                 addres,
+//                 link_linkedin,
+//                 link_ig,
+//                 link_youtube,
+//                 link_telegram,
+//                 link_map
+//             }
+//         });
+//     } catch (error) {
+//         res.status(500).json({
+//             message: "CREATE DATA ERROR",
+//             serverMessage: error,
+//         });
+//     }
+// }
+
+// const createDataCompany = async (req, res) => {
+//     const { company_name, tittle_company, description_company, client, sponsor, rating, description_about, tittle_history, description_history, tittle_profile, description_profile, visi, misi, tittle_culture, description_culture, no_wa, no_telephone, email, addres, link_linkedin, link_ig, link_youtube, link_telegram, link_map } = req.body;
+
+//     const { image_company, image_about, image_history, image_profile, image_culture, image_client } = req.files;
+    
+//     try {
+//         await createDataCompany(
+//             company_name,
+//             image_company[0].path,
+//             tittle_company,
+//             description_company,
+//             client,
+//             sponsor,
+//             rating,
+//             image_about[0].path,
+//             description_about,
+//             tittle_history,
+//             description_history,
+//             image_history[0].path,
+//             tittle_profile,
+//             description_profile,
+//             image_profile[0].path,
+//             visi,
+//             misi,
+//             image_culture[0].path,
+//             tittle_culture,
+//             description_culture,
+//             image_client[0].path,
+//             no_wa,
+//             no_telephone,
+//             email,
+//             addres,
+//             link_linkedin,
+//             link_ig,
+//             link_youtube,
+//             link_telegram,
+//             link_map
+//         );
+
+//         res.status(201).json({
+//             message: "CREATE DATA SUCCESS",
+//             data: {
+//                 company_name,
+//                 image_company: image_company[0].path,
+//                 tittle_company,
+//                 description_company,
+//                 client,
+//                 sponsor,
+//                 rating,
+//                 image_about: image_about.map(image => image.path),
+//                 description_about,
+//                 tittle_history,
+//                 description_history,
+//                 image_history: image_history.map(image => image.path),
+//                 tittle_profile,
+//                 description_profile,
+//                 image_profile: image_profile.map(image => image.path),
+//                 visi,
+//                 misi,
+//                 image_culture: image_culture.map(image => image.path),
+//                 tittle_culture,
+//                 description_culture,
+//                 image_client: image_client.map(image => image.path),
 //                 no_wa,
 //                 no_telephone,
 //                 email,
@@ -141,33 +223,69 @@ const getAlldataCompany = async (req,res) => {
 // }
 
 const createDataCompany = async (req, res) => {
-    const { company_name, tittle_company, description_company, client, sponsor, rating, description_about, tittle_history, description_history, tittle_profile, description_profile, visi, misi, tittle_culture, description_culture, no_wa, no_telephone, email, addres, link_linkedin, link_ig, link_youtube, link_telegram, link_map } = req.body;
+    const { 
+        company_name, 
+        tittle_company, 
+        description_company, 
+        client, 
+        sponsor, 
+        rating, 
+        description_about, 
+        visi, 
+        misi, 
+        tittle_culture, 
+        description_culture, 
+        no_wa, 
+        no_telephone, 
+        email, 
+        addres, 
+        link_linkedin, 
+        link_ig, 
+        link_youtube, 
+        link_telegram, 
+        link_map 
+    } = req.body;
 
-    const { image_company, images_about, images_history, images_profile, images_culture, images_client } = req.files;
-    
+    const imagePath = req.file.path;
+    // const image_aboutPath = req.file.path;
+    // const image_culturePath = req.file.path;
+    // const image_culture_2Path = req.file.path;
+    // const image_culture_3Path = req.file.path;
+    // const image_clientPath = req.file.path;
+    // const image_client_2Path = req.file.path;
+    // const image_client_3Path = req.file.path;
+    // const image_client_4Path = req.file.path;
+
     try {
-        await createDataCompany(
+        // Pastikan semua file yang diunggah telah berhasil
+        // if (!req.file['image_company'] || !req.file['image_about'] || !req.file['image_culture'] || !req.file['image_culture_2'] || !req.file['image_culture_3'] || !req.file['image_client'] || !req.file['image_client_2'] || !req.file['image_client_3'] || !req.file['image_client_4']) {
+        //     return res.status(400).json({
+        //         message: "Please provide all necessary images"
+        //     });
+        // }
+        
+
+        await companyModels.createDataCompany(
             company_name,
-            image_company[0].path,
+            imagePath,
             tittle_company,
             description_company,
             client,
             sponsor,
             rating,
-            images_about[0].path,
+            // image_aboutPath,
             description_about,
-            tittle_history,
-            description_history,
-            images_history[0].path,
-            tittle_profile,
-            description_profile,
-            images_profile[0].path,
             visi,
             misi,
-            images_culture[0].path,
+            // image_culturePath,
+            // image_culture_2Path,
+            // image_culture_3Path,
             tittle_culture,
             description_culture,
-            images_client[0].path,
+            // image_clientPath,
+            // image_client_2Path,
+            // image_client_3Path,
+            // image_client_4Path,
             no_wa,
             no_telephone,
             email,
@@ -183,26 +301,25 @@ const createDataCompany = async (req, res) => {
             message: "CREATE DATA SUCCESS",
             data: {
                 company_name,
-                image_company: image_company[0].path,
+                image_company: imagePath,
                 tittle_company,
                 description_company,
                 client,
                 sponsor,
                 rating,
-                image_about: images_about.map(image => image.path),
+                // image_about: image_aboutPath,
                 description_about,
-                tittle_history,
-                description_history,
-                image_history: images_history.map(image => image.path),
-                tittle_profile,
-                description_profile,
-                image_profile: images_profile.map(image => image.path),
                 visi,
                 misi,
-                image_culture: images_culture.map(image => image.path),
+                // image_culture: image_culturePath,
+                // image_culture_2: image_client_2Path,
+                // image_culture_3: image_culture_3Path,
                 tittle_culture,
                 description_culture,
-                image_sponsors: images_client.map(image => image.path),
+                // image_client: image_clientPath,
+                // image_client_2: image_client_2Path,
+                // image_client_3: image_client_3Path,
+                // image_client_4: image_client_4Path,
                 no_wa,
                 no_telephone,
                 email,
@@ -217,10 +334,11 @@ const createDataCompany = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             message: "CREATE DATA ERROR",
-            serverMessage: error,
+            serverMessage: error
         });
     }
 }
+
 
 
 const updateDataCompany = async (req, res) => {

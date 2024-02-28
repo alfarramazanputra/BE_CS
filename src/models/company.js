@@ -12,13 +12,13 @@ const getAlldataCompany = () => {
 //     return dbPool.execute(sqlQuery);
 // }
 
-// const createDataCompany = async (company_name, imageCompanyPath, tittle_company, description_company, client, sponsor, rating, imageAboutPath, description_about, tittle_history, description_history, imageHistoryPath, tittle_profile, description_profile, imageProfilePath, visi, misi, imageCulturePath, tittle_culture, description_culture, imageClientPath, no_wa, no_telephone, email, addres, link_linkedin, link_ig, link_youtube, link_telegram, link_map) => {
+// const createDataCompany = async (company_name, image_companyPath, tittle_company, description_company, client, sponsor, rating, imageAboutPath, description_about, tittle_history, description_history, imageHistoryPath, tittle_profile, description_profile, imageProfilePath, visi, misi, imageCulturePath, tittle_culture, description_culture, image_clientPath, no_wa, no_telephone, email, addres, link_linkedin, link_ig, link_youtube, link_telegram, link_map) => {
 //     try {
 //         const sqlQuery = `INSERT INTO tb_company (company_name, image_company, tittle_company, description_company, client, sponsor, rating, image_about, description_about, tittle_history, description_history, image_history, tittle_profile, description_profile, image_profile, visi, misi, image_culture, tittle_culture, description_culture, image_client, no_wa, no_telephone, email, addres, link_linkedin, link_ig, link_youtube, link_telegram, link_map) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
 //         // const values = [
 //         //     company_name,
-//         //     imageCompanyPath,
+//         //     image_companyPath,
 //         //     tittle_company,
 //         //     description_company,
 //         //     client,
@@ -37,7 +37,7 @@ const getAlldataCompany = () => {
 //         //     imageCulturePath,
 //         //     tittle_culture,
 //         //     description_culture,
-//         //     imageClientPath,
+//         //     image_clientPath,
 //         //     no_wa,
 //         //     no_telephone,
 //         //     email,
@@ -50,7 +50,7 @@ const getAlldataCompany = () => {
 //         // ];
 
 //         const [rows, fields] = await dbPool.execute(sqlQuery, [company_name,
-//             imageCompanyPath,
+//             image_companyPath,
 //             tittle_company,
 //             description_company,
 //             client,
@@ -69,7 +69,7 @@ const getAlldataCompany = () => {
 //             imageCulturePath,
 //             tittle_culture,
 //             description_culture,
-//             imageClientPath,
+//             image_clientPath,
 //             no_wa,
 //             no_telephone,
 //             email,
@@ -85,31 +85,64 @@ const getAlldataCompany = () => {
 //     }
 // }
 
-const createDataCompany = async (company_name, imageCompanyPath, tittle_company, description_company, client, sponsor, rating, imageAboutPath, description_about, tittle_history, description_history, imageHistoryPath, tittle_profile, description_profile, imageProfilePath, visi, misi, imageCulturePath, tittle_culture, description_culture, imageClientPath, no_wa, no_telephone, email, addres, link_linkedin, link_ig, link_youtube, link_telegram, link_map) => {
-    try {
-        const sqlQuery = `INSERT INTO tb_company (company_name, image_company, tittle_company, description_company, client, sponsor, rating, image_about, description_about, tittle_history, description_history, image_history, tittle_profile, description_profile, image_profile, visi, misi, image_culture, tittle_culture, description_culture, image_client, no_wa, no_telephone, email, addres, link_linkedin, link_ig, link_youtube, link_telegram, link_map) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+const createDataCompany = async (
+    company_name, 
+    imagePath, 
+    tittle_company, 
+    description_company, 
+    client, 
+    sponsor, 
+    rating, 
+    // image_aboutPath, 
+    description_about, 
+    visi, 
+    misi, 
+    // image_culturePath, 
+    // image_culture_2Path, 
+    // image_culture_3Path, 
+    tittle_culture, 
+    description_culture, 
+    // image_clientPath, 
+    // image_client_2Path, 
+    // image_client_3Path, 
+    // image_client_4Path, 
+    no_wa, 
+    no_telephone, 
+    email, 
+    addres, 
+    link_linkedin, 
+    link_ig, 
+    link_youtube, 
+    link_telegram, 
+    link_map
+    ) => {
 
-        const [rows, fields] = await dbPool.execute(sqlQuery, [company_name,
-            imageCompanyPath,
+        // company_name, image_company, tittle_company, description_company, client, sponsor, rating, image_about, description_about, visi, misi, image_culture, image_culture_2, image_culture_3, tittle_culture, description_culture, image_client, image_client_2, image_client_3, image_client_4, no_wa, no_telephone, email, addres, link_linkedin, link_ig, link_youtube, link_telegram, link_map
+
+    try {
+        const sqlQuery = `INSERT INTO tb_company (company_name, image, tittle_company, description_company, client, sponsor, rating, description_about, visi, misi, tittle_culture, description_culture, no_wa, no_telephone, email, addres, link_linkedin, link_ig, link_youtube, link_telegram, link_map) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+        const [rows, fields] = await dbPool.execute(sqlQuery, [
+            company_name,
+            imagePath,
             tittle_company,
             description_company,
             client,
             sponsor,
             rating,
-            imageAboutPath,
+            // image_aboutPath,
             description_about,
-            tittle_history,
-            description_history,
-            imageHistoryPath,
-            tittle_profile,
-            description_profile,
-            imageProfilePath,
             visi,
             misi,
-            imageCulturePath,
+            // image_culturePath,
+            // image_culture_2Path,
+            // image_culture_3Path,
             tittle_culture,
             description_culture,
-            imageClientPath,
+            // image_clientPath,
+            // image_client_2Path,
+            // image_client_3Path,
+            // image_client_4Path,
             no_wa,
             no_telephone,
             email,
@@ -118,7 +151,8 @@ const createDataCompany = async (company_name, imageCompanyPath, tittle_company,
             link_ig,
             link_youtube,
             link_telegram,
-            link_map]);
+            link_map
+        ]);
         return rows;
     } catch (error) {
         throw error;
@@ -138,12 +172,6 @@ const updateDataCompany = (body, id) => {
             rating = '${body.rating}',
             image_about = '${body.image_about}',
             description_about = '${body.description_about}',
-            tittle_history = '${body.tittle_history}',
-            description_history = '${body.description_history}',
-            image_history = '${body.image_history}',
-            tittle_profile = '${body.tittle_profile}',
-            description_profile = '${body.description_profile}',
-            image_profile = '${body.image_profile}',
             visi = '${body.visi}',
             misi = '${body.misi}',
             image_culture = '${body.image_culture}',
