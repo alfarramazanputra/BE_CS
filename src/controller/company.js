@@ -257,14 +257,6 @@ const createDataCompany = async (req, res) => {
     // const image_client_4Path = req.file.path;
 
     try {
-        // Pastikan semua file yang diunggah telah berhasil
-        // if (!req.file['image_company'] || !req.file['image_about'] || !req.file['image_culture'] || !req.file['image_culture_2'] || !req.file['image_culture_3'] || !req.file['image_client'] || !req.file['image_client_2'] || !req.file['image_client_3'] || !req.file['image_client_4']) {
-        //     return res.status(400).json({
-        //         message: "Please provide all necessary images"
-        //     });
-        // }
-        
-
         await companyModels.createDataCompany(
             company_name,
             imagePath,
@@ -301,7 +293,7 @@ const createDataCompany = async (req, res) => {
             message: "CREATE DATA SUCCESS",
             data: {
                 company_name,
-                image_company: imagePath,
+                image: imagePath,
                 tittle_company,
                 description_company,
                 client,
@@ -335,6 +327,102 @@ const createDataCompany = async (req, res) => {
         res.status(500).json({
             message: "CREATE DATA ERROR",
             serverMessage: error
+        });
+    }
+}
+
+
+//CONTROLLER BARU
+const createCompany = async (req, res) => {
+    const {
+        company_name,  
+        tittle_company, 
+        description_company, 
+        client, 
+        sponsor, 
+        rating,
+        description_about, 
+        visi, 
+        misi, 
+        tittle_culture,
+        description_culture,
+        no_wa, 
+        no_telephone, 
+        email, 
+        addres, 
+        link_linkedin, 
+        link_ig, 
+        link_youtube, 
+        link_telegram, 
+        link_map
+    } = req.body;
+
+    // Mendapatkan path gambar dari request
+    const image_companyPath = req.files['image_company'][0].path;
+    const image_aboutPath = req.files['image_about'][0].path;
+    const image_culturePath = req.files['image_culture'][0].path;
+    const image_clientPath = req.files['image_client'][0].path;
+
+    try {
+        await companyModels.createCompany(
+            company_name, 
+            image_companyPath, 
+            tittle_company, 
+            description_company, 
+            client, 
+            sponsor, 
+            rating,
+            image_aboutPath,
+            description_about, 
+            visi, 
+            misi, 
+            image_culturePath,
+            tittle_culture, 
+            description_culture,
+            image_clientPath,
+            no_wa, 
+            no_telephone, 
+            email, 
+            addres, 
+            link_linkedin, 
+            link_ig, 
+            link_youtube, 
+            link_telegram, 
+            link_map
+        );
+        res.status(201).json({
+            message: "CREATE DATA SUCCESS",
+            data: {
+                company_name,
+                image_company: image_companyPath,
+                tittle_company,
+                description_company,
+                client,
+                sponsor,
+                rating,
+                image_about: image_aboutPath,
+                description_about,
+                visi,
+                misi,
+                image_culture: image_culturePath,
+                tittle_culture,
+                description_culture,
+                image_client: image_clientPath,
+                no_wa,
+                no_telephone,
+                email,
+                addres,
+                link_linkedin,
+                link_ig,
+                link_youtube,
+                link_telegram,
+                link_map
+            }
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "CREATE DATA ERROR",
+            serverMessage: error,
         });
     }
 }
@@ -381,5 +469,5 @@ const deleteDataCompany = async (req, res) => {
 }
 
 module.exports = {
-    getAlldataCompany, createDataCompany, updateDataCompany, deleteDataCompany
+    getAlldataCompany, createDataCompany, createCompany,    updateDataCompany, deleteDataCompany
 }

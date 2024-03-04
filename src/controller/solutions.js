@@ -19,7 +19,7 @@ const getAlldatasolutions = async (req,res) => {
 const createDatasolutions = async (req, res) => {
     const { body } = req;
     //memeriksa apakah data sudah diisi semua
-    if(!body.tittle || !body.description){
+    if(!body.title || !body.description){
         return res.status(400).json({
             message: "Semua data harus diisi."
         });
