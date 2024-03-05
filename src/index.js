@@ -30,7 +30,7 @@ app.use('/solution', solutionRoutes)
 app.use('/team', teamRoutes)
 app.use('/blogcategory', blogcategoryRoutes)
 app.use('/testimoni', testimoniRoutes)
-app.use('/api/auth', authRoutes)
+app.use('/auth', authRoutes)
 
 
 app.listen(PORT, () => {
