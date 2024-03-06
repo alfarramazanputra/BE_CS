@@ -18,17 +18,18 @@ const authRoutes = require('./routes/authroute');
 
 const verifyToken = require('./middleware/authMiddleware');
 
-
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(verifyToken)
 app.use('/users', userRoutes)
 app.use('/blog', blogRoutes)
 app.use('/company', companyRoutes)
 app.use('/innovation', innovationRoutes)
 app.use('/portfolio', portfolioRoutes)
-app.use('/service', verifyToken, serviceRoutes)
+app.use('/service', serviceRoutes)
 app.use('/solution', solutionRoutes)
 app.use('/team', teamRoutes)
 app.use('/blogcategory', blogcategoryRoutes)

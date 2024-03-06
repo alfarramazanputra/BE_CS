@@ -2,6 +2,11 @@ const jwt = require('jsonwebtoken');
 const secretAccessToken = '6237i2ugrui2g73r82gr272tguw82327iufhiuwifg982ysbvi';
 
 const verifyToken = (req, res, next) => {
+    // penecualian untuk login
+    if (req.originalUrl === '/auth/login') {
+        return next();
+    }
+
     // Mendapatkan token dari header Authorization
     const authHeader = req.headers.authorization;
 
