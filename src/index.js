@@ -1,6 +1,7 @@
 require('dotenv').config()
 const PORT = process.env.PORT || 4005;
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/users');
@@ -14,10 +15,12 @@ const teamRoutes = require('./routes/teams');
 const blogcategoryRoutes = require('./routes/blogcategory');
 const testimoniRoutes = require('./routes/testimoni');
 const authRoutes = require('./routes/authroute');
-// const middlewareLogRequest = require('./middleware/logs')
 
-// app.use(middlewareLogRequest)
-app.use(express.json())
+const verifyToken = require('./middleware/authMiddleware');
+
+
+app.use(express.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/users', userRoutes)
@@ -25,12 +28,15 @@ app.use('/blog', blogRoutes)
 app.use('/company', companyRoutes)
 app.use('/innovation', innovationRoutes)
 app.use('/portfolio', portfolioRoutes)
-app.use('/service', serviceRoutes)
+app.use('/service', verifyToken, serviceRoutes)
 app.use('/solution', solutionRoutes)
 app.use('/team', teamRoutes)
 app.use('/blogcategory', blogcategoryRoutes)
 app.use('/testimoni', testimoniRoutes)
 app.use('/auth', authRoutes)
+
+
+app.use('/asset', express.static('public/uploads'));
 
 
 app.listen(PORT, () => {

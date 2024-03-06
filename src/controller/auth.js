@@ -1,9 +1,7 @@
 const userModels = require('../models/users');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
-
-const secretAccessToken = 'cobacobaaja';
+const secretAccessToken = '6237i2ugrui2g73r82gr272tguw82327iufhiuwifg982ysbvi';
 
 const login = async (req, res) => {
     const { username, password } = req.body;
