@@ -30,7 +30,7 @@ const createDatateams = async (name, position, imagePath) => {
 
 const updateDatateams = async(name, position, imagePath, id) => {
     try {
-        const sqlQuery = `UPDATE tb_teams name=?, position=?, image=? WHERE id=?`;
+        const sqlQuery = `UPDATE tb_teams SET name=?, position=?, image=? WHERE id=?`;
         await dbPool.execute(sqlQuery, [name, position, imagePath, id]);
     } catch (error) {
         throw error;

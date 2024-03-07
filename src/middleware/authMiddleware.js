@@ -12,7 +12,7 @@ const verifyToken = (req, res, next) => {
 
     // Memeriksa apakah header Authorization ada
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ message: 'Token tidak ditemukan.' });
+        return res.status(401).json({ message: 'Please input the token first!!' });
     }
 
     // Mengambil token dari header Authorization
@@ -25,7 +25,7 @@ const verifyToken = (req, res, next) => {
         next();
     } catch (error) {
         // Tangani kesalahan jika token tidak valid
-        return res.status(403).json({ message: 'Token tidak valid.' });
+        return res.status(403).json({ message: 'invalid token!!' });
     }
 };
 
