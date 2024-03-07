@@ -15,6 +15,7 @@ const teamRoutes = require('./routes/teams');
 const blogcategoryRoutes = require('./routes/blogcategory');
 const testimoniRoutes = require('./routes/testimoni');
 const authRoutes = require('./routes/authroute');
+const registerRoutes = require('./routes/register');
 
 const verifyToken = require('./middleware/authMiddleware');
 
@@ -35,6 +36,7 @@ app.use('/team', teamRoutes)
 app.use('/blogcategory', blogcategoryRoutes)
 app.use('/testimoni', testimoniRoutes)
 app.use('/auth', authRoutes)
+app.use('/auth', registerRoutes)
 
 
 app.use('/asset', express.static('public/uploads'));

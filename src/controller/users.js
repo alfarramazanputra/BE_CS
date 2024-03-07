@@ -66,31 +66,31 @@ const getUsersbyUsername = async (req,res) => {
     
 // }
 
-const createNewUsers = async (req, res) => {
-    const {username, password, fullname, place_date_birth, position, addres} = req.body;
-    const imagePath = req.file.path;
+// const createNewUsers = async (req, res) => {
+//     const {username, password, fullname, place_date_birth, position, addres} = req.body;
+//     const imagePath = req.file.path;
 
-    try {
-        if (!username || !password || !fullname || !place_date_birth || !position || !addres || !imagePath) {
-            return res.status(400).json({
-                message: "Please provide username, password, and image path"
-            });
-        }
+//     try {
+//         if (!username || !password || !fullname || !place_date_birth || !position || !addres || !imagePath) {
+//             return res.status(400).json({
+//                 message: "Please provide username, password, and image path"
+//             });
+//         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+//         const hashedPassword = await bcrypt.hash(password, 10);
         
-        await userModels.createNewUsers(username, hashedPassword, fullname, place_date_birth, position, imagePath, addres);
-        res.status(201).json({
-            message: "CREATE DATA SUCCES",
-            data: {username, fullname, place_date_birth, position, image: imagePath, addres}
-        });
-    } catch (error) {
-        res.status(500).json({
-            message: "CREATE DATA ERROR",
-            serverMessage: error,
-        });
-    }
-}
+//         await userModels.createNewUsers(username, hashedPassword, fullname, place_date_birth, position, imagePath, addres);
+//         res.status(201).json({
+//             message: "CREATE DATA SUCCES",
+//             data: {username, fullname, place_date_birth, position, image: imagePath, addres}
+//         });
+//     } catch (error) {
+//         res.status(500).json({
+//             message: "CREATE DATA ERROR",
+//             serverMessage: error,
+//         });
+//     }
+// }
 
 // const updateUsers = async (req, res) => {
 
@@ -159,4 +159,4 @@ const deleteUsers = async (req, res) => {
 
 }
 
-module.exports = { getAllUsers, getUsersbyUsername, createNewUsers, updateUsers, deleteUsers }
+module.exports = { getAllUsers, getUsersbyUsername, updateUsers, deleteUsers }

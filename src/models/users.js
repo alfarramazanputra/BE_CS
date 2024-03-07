@@ -18,7 +18,7 @@ const getUsersbyUsername = (username) => {
 //     return dbPool.execute( sqlQuery );
 // }
 
-const createNewUsers = async(username, password, fullname, place_date_birth, position, imagePath, addres) => {
+const registerUser = async(username, password, fullname, place_date_birth, position, imagePath, addres) => {
     try {
         const sqlQuery = `INSERT INTO tb_user (username, password, fullname, place_date_birth, position, image, addres) VALUES (?, ?, ?, ?, ?, ?, ?)`;
         const[rows, fields] = await dbPool.execute(sqlQuery, [username, password, fullname, place_date_birth, position, imagePath, addres]);
@@ -50,4 +50,4 @@ const deleteUsers = (id) => {
 }
 
 
-module.exports = { getAllUsers, getUsersbyUsername, createNewUsers, updateUsers, deleteUsers }
+module.exports = { getAllUsers, getUsersbyUsername, registerUser, updateUsers, deleteUsers }
