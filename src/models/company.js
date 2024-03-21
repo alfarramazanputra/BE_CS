@@ -188,7 +188,7 @@ const updateDataCompany = async (company_name,
 
 
 const deleteDataCompany = (id) => {
-    const sqlQuery = `DELETE FROM tb_Company WHERE id=${id}`;
+    const sqlQuery = `DELETE FROM tb_company WHERE id=${id}`;
 
     return dbPool.execute(sqlQuery);
 }
