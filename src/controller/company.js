@@ -47,6 +47,17 @@ const createCompany = async (req, res) => {
     const image_culturePath = req.files['image_culture'][0].path;
     const image_clientPath = req.files['image_client'][0].path;
 
+    // Memeriksa apakah semua data yang diperlukan telah tersedia
+    if (!company_name || !tittle_company || !description_company || !client || !sponsor || !rating ||
+        !description_about || !visi || !misi || !tittle_culture || !description_culture || !no_wa || 
+        !no_telephone || !email || !addres || !link_linkedin || !link_ig || !link_youtube || 
+        !link_telegram || !link_map || !req.files['image_company'] || !req.files['image_about'] || 
+        !req.files['image_culture'] || !req.files['image_client']) {
+        return res.status(400).json({
+            message: "All data must be filled in."
+        });
+    }
+
     try {
         await companyModels.createCompany(
             company_name, 
@@ -111,8 +122,6 @@ const createCompany = async (req, res) => {
     }
 }
 
-
-
 const updateDataCompany = async (req, res) => {
     const { id } = req.params;
     const { company_name,
@@ -141,6 +150,16 @@ const updateDataCompany = async (req, res) => {
     const image_aboutPath = image_about ? image_about[0].path : null;
     const image_culturePath = image_culture ? image_culture[0].path : null;
     const image_clientPath = image_client ? image_client[0].path : null;
+
+    if (!company_name || !tittle_company || !description_company || !client || !sponsor || !rating ||
+        !description_about || !visi || !misi || !tittle_culture || !description_culture || !no_wa || 
+        !no_telephone || !email || !addres || !link_linkedin || !link_ig || !link_youtube || 
+        !link_telegram || !link_map || !req.files['image_company'] || !req.files['image_about'] || 
+        !req.files['image_culture'] || !req.files['image_client']) {
+        return res.status(400).json({
+            message: "All data must be filled in."
+        });
+    }
 
     try {
         await companyModels.updateDataCompany(
