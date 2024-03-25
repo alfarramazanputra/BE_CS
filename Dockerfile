@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 4000
 
 # Menjalankan aplikasi Express
-CMD ["npm", "start"]
+CMD ["sh", "-c", "npm start"]
