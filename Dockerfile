@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 4000
 
 # Menjalankan aplikasi Express
-CMD npm run start
+CMD npm start
