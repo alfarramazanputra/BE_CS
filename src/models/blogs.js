@@ -44,21 +44,4 @@ const deleteDataBlog = (id) => {
     return dbPool.execute(sqlQuery);
 }
 
-
-const relationTB = () => {
-    const sqlQuery = `
-        SELECT
-            a.id,
-            a.image,
-            a.tittle,
-            a.description,
-            a.id_category,
-            b.category_name
-        FROM tb_blog a
-        INNER JOIN tb_blog_category b ON b.id = a.id_category
-    `;
-    
-    return dbPool.execute(sqlQuery);
-}
-
-module.exports = { getAlldataBlog, createDataBlog, updateBlog, deleteDataBlog, relationTB }
+module.exports = { getAlldataBlog, createDataBlog, updateBlog, deleteDataBlog }

@@ -127,15 +127,4 @@ const deleteDataBlog = async (req, res) => {
     }
 }
 
-
-const getRelationTB = async (req, res) => {
-    try {
-        const result = await blogModels.relationTB();
-        res.json(result);
-    } catch (error) {
-        console.error("Error occurred:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};
-
-module.exports = { getAlldataBlog, createDataBlog, updateBlog, deleteDataBlog, getRelationTB }
+module.exports = { getAlldataBlog, createDataBlog, updateBlog, deleteDataBlog }

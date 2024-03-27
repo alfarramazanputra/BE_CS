@@ -5,7 +5,6 @@ const upload = require('../config/multerConfig')
 
 //READ
 route.get('/', BlogController.getAlldataBlog)
-route.get('/relation', BlogController.getRelationTB)
 
 //CREATE
 route.post('/', upload.single('image'),BlogController.createDataBlog)

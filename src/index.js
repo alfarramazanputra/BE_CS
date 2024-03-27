@@ -13,7 +13,6 @@ const portfolioRoutes = require('./routes/portfolio');
 const serviceRoutes = require('./routes/services');
 const solutionRoutes = require('./routes/solutions');
 const teamRoutes = require('./routes/teams');
-const blogcategoryRoutes = require('./routes/blogcategory');
 const testimoniRoutes = require('./routes/testimoni');
 const authRoutes = require('./routes/authroute');
 const registerRoutes = require('./routes/register');
@@ -35,7 +34,6 @@ app.use('/portfolio', portfolioRoutes)
 app.use('/service', serviceRoutes)
 app.use('/solution', solutionRoutes)
 app.use('/team', teamRoutes)
-app.use('/blogcategory', blogcategoryRoutes)
 app.use('/testimoni', testimoniRoutes)
 app.use('/auth', authRoutes)
 app.use('/auth', registerRoutes)
