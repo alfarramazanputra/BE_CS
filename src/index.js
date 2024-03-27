@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const userRoutes = require('./routes/users');
 const blogRoutes = require('./routes/blogs');
 const companyRoutes = require('./routes/company');
+const cultureRoutes = require('./routes/culture');
 const innovationRoutes = require('./routes/innovations');
 const portfolioRoutes = require('./routes/portfolio');
 const serviceRoutes = require('./routes/services');
@@ -28,6 +29,7 @@ app.use(verifyToken)
 app.use('/users', userRoutes)
 app.use('/blog', blogRoutes)
 app.use('/company', companyRoutes)
+app.use('/culture', cultureRoutes)
 app.use('/innovation', innovationRoutes)
 app.use('/portfolio', portfolioRoutes)
 app.use('/service', serviceRoutes)

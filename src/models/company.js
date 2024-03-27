@@ -19,19 +19,16 @@ const createCompany = async (
     description_about, 
     visi, 
     misi, 
-    image_culturePath,
-    tittle_culture, 
-    description_culture,
     image_clientPath,
     no_wa, 
     no_telephone, 
     email, 
     addres, 
-    link_linkedin, 
-    link_ig, 
-    link_youtube, 
-    link_telegram, 
-    link_map
+    linkedin, 
+    instagram, 
+    youtube, 
+    telegram, 
+    map
 ) => {
     try {
         const sqlQuery = `INSERT INTO tb_company (
@@ -46,19 +43,16 @@ const createCompany = async (
             description_about,
             visi,
             misi,
-            image_culture,
-            tittle_culture,
-            description_culture,
             image_client,
             no_wa,
             no_telephone,
             email,
             addres,
-            link_linkedin,
-            link_ig,
-            link_youtube,
-            link_telegram,
-            link_map) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            linkedin,
+            instagram,
+            youtube,
+            telegram,
+            map) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
         
         // Ganti undefined dengan null jika ada
         const parameters = [
@@ -73,19 +67,16 @@ const createCompany = async (
             description_about,
             visi,
             misi,
-            image_culturePath,
-            tittle_culture,
-            description_culture,
             image_clientPath,
             no_wa,
             no_telephone,
             email,
             addres,
-            link_linkedin,
-            link_ig,
-            link_youtube,
-            link_telegram,
-            link_map
+            linkedin,
+            instagram,
+            youtube,
+            telegram,
+            map
         ];
         const [rows, fields] = await dbPool.execute(sqlQuery, parameters);
         return rows;
@@ -106,19 +97,16 @@ const updateDataCompany = async (company_name,
             description_about,
             visi,
             misi,
-            image_culturePath,
-            tittle_culture,
-            description_culture,
             image_clientPath,
             no_wa,
             no_telephone,
             email,
             addres,
-            link_linkedin,
-            link_ig,
-            link_youtube,
-            link_telegram,
-            link_map,
+            linkedin,
+            instagram,
+            youtube,
+            telegram,
+            map,
             id) => {
     try {
         const sqlQuery = `
@@ -135,19 +123,16 @@ const updateDataCompany = async (company_name,
                 description_about = ?,
                 visi = ?,
                 misi = ?,
-                image_culture = ?,
-                tittle_culture = ?,
-                description_culture = ?,
                 image_client = ?,
                 no_wa = ?,
                 no_telephone = ?,
                 email = ?,
                 addres = ?,
-                link_linkedin = ?,
-                link_ig = ?,
-                link_youtube = ?,
-                link_telegram = ?,
-                link_map = ?
+                linkedin = ?,
+                instagram = ?,
+                youtube = ?,
+                telegram = ?,
+                map = ?
             WHERE id = ?
         `;
         
@@ -163,19 +148,16 @@ const updateDataCompany = async (company_name,
             description_about,
             visi,
             misi,
-            image_culturePath,
-            tittle_culture,
-            description_culture,
             image_clientPath,
             no_wa,
             no_telephone,
             email,
             addres,
-            link_linkedin,
-            link_ig,
-            link_youtube,
-            link_telegram,
-            link_map,
+            linkedin,
+            instagram,
+            youtube,
+            telegram,
+            map,
             id
         ];
 
@@ -186,6 +168,126 @@ const updateDataCompany = async (company_name,
     }
 };
 
+const updateCompany = async (company_name, image_companyPath, tittle_company, description_company, id) => {
+    try {
+        const sqlQuery = `
+            UPDATE tb_company 
+            SET 
+                company_name = ?,
+                image_company = ?,
+                tittle_company = ?,
+                description_company = ?
+            WHERE id = ?
+        `;
+
+        const parameters = [
+            company_name, image_companyPath, tittle_company, description_company, id
+        ];
+
+        const [rows, fields] = await dbPool.execute(sqlQuery, parameters);
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const updateClient = async (client, sponsor, rating, image_clientPath, id) => {
+    try {
+        const sqlQuery = `
+            UPDATE tb_company 
+            SET 
+                client = ?,
+                sponsor = ?,
+                rating = ?,
+                image_client = ?
+            WHERE id = ?
+        `;
+
+        const parameters = [
+            client, sponsor, rating, image_clientPath, id
+        ];
+
+        const [rows, fields] = await dbPool.execute(sqlQuery, parameters);
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const updateAbout = async (image_aboutPath, description_about, visi, misi, id) => {
+    try {
+        const sqlQuery = `
+            UPDATE tb_company 
+            SET 
+                image_about = ?,
+                description_about = ?,
+                visi = ?,
+                misi = ?
+            WHERE id = ?
+        `;
+
+        const parameters = [
+            image_aboutPath,
+            description_about,
+            visi,
+            misi,
+            id
+        ];
+
+        const [rows, fields] = await dbPool.execute(sqlQuery, parameters);
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const updatepersonal = async ( 
+    no_wa,
+    no_telephone,
+    email,
+    addres,
+    linkedin,
+    instagram,
+    youtube,
+    telegram,
+    map,
+    id
+) => {
+    try {
+        const sqlQuery = `
+            UPDATE tb_company
+            SET 
+                no_wa = ?,
+                no_telephone = ?,
+                email = ?,
+                addres = ?,
+                linkedin = ?,
+                instagram = ?,
+                youtube = ?,
+                telegram = ?,
+                map = ?
+            WHERE id = ?
+        `;
+
+        const parameters = [
+            no_wa,
+            no_telephone,
+            email,
+            addres,
+            linkedin,
+            instagram,
+            youtube,
+            telegram,
+            map,
+            id
+        ];
+
+        const [rows, fields] = await dbPool.execute(sqlQuery, parameters);
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+};
 
 const deleteDataCompany = (id) => {
     const sqlQuery = `DELETE FROM tb_company WHERE id=${id}`;
@@ -194,5 +296,5 @@ const deleteDataCompany = (id) => {
 }
 
 module.exports = {
-    getAlldataCompany, createCompany, updateDataCompany, deleteDataCompany
+    getAlldataCompany, createCompany, updateDataCompany, deleteDataCompany, updateAbout, updateClient, updateCompany, updatepersonal
 }
