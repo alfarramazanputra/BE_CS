@@ -40,20 +40,20 @@ const getAlldataBlog = async (req,res) => {
 // }
 
 const createDataBlog = async (req, res) => {
-    const { tittle, description, id_category } = req.body;
+    const { tittle, description } = req.body;
     const imagePath = req.file.path;
 
     try {
-        if (!tittle || !description || !id_category || !imagePath) {
+        if (!tittle || !description || !imagePath) {
             return res.status(400).json({
                 message: "Please provide title, description, and image path"
             });
         }
 
-        await blogModels.createDataBlog(imagePath, tittle, description, id_category);
+        await blogModels.createDataBlog(imagePath, tittle, description);
         res.status(201).json({
             message: "CREATE DATA SUCCES",
-            data: { image: imagePath, tittle, description, id_category }
+            data: { image: imagePath, tittle, description }
         })
     } catch (error) {
         res.status(500).json({
@@ -87,20 +87,20 @@ const createDataBlog = async (req, res) => {
 
 const updateBlog = async (req, res) => {
     const { id } = req.params;
-    const { tittle, description, id_category } = req.body;
+    const { tittle, description } = req.body;
     const imagePath = req.file.path;
 
     try {
-        if (!tittle || !description || !id_category || !imagePath) {
+        if (!tittle || !description || !imagePath) {
             return res.status(400).json({
                 message: "Please provide title, description, and image path"
             });
         }
         
-        await blogModels.updateBlog(imagePath, tittle, description, id_category, id);
+        await blogModels.updateBlog(imagePath, tittle, description, id);
         res.json({
             message: "UPDATE DATA SUCCESS",
-            data: { id, image: imagePath, tittle, description, id_category }
+            data: { id, image: imagePath, tittle, description }
         });
     } catch (error) {
         res.status(500).json({

@@ -138,10 +138,7 @@ const updateDataCompany = async (req, res) => {
     const image_aboutPath = image_about ? image_about[0].path : null;
     const image_clientPath = image_client ? image_client[0].path : null;
 
-    if (!company_name || !tittle_company || !description_company || !client || !sponsor || !rating ||
-        !description_about || !visi || !misi || !no_wa || 
-        !no_telephone || !email || !addres || !linkedin || !instagram || !youtube || 
-        !telegram || !map || !req.files['image_company'] || !req.files['image_about'] || !req.files['image_client']) {
+    if (!req.files['image_company'] || !req.files['image_about'] || !req.files['image_client']) {
         return res.status(400).json({
             message: "All data must be filled in."
         });
