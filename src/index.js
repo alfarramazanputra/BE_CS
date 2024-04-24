@@ -45,7 +45,7 @@ app.get('/ping', (req, res) => {
   });
 
 
-app.use(`/${BASE_URL}/asset`, express.static('public/uploads'));
+app.use('/asset', express.static('public/uploads'));
 
 
 app.listen(PORT, () => {
