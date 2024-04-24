@@ -3,7 +3,7 @@ const multer = require('multer');
 // Konfigurasi penyimpanan
 const storage = multer.diskStorage({
     destination:  (req, file, cb) => {
-        cb(null, 'public/uploads/') // Lokasi penyimpanan file yang diunggah
+        cb(null, 'public/compro-api/uploads/') // Lokasi penyimpanan file yang diunggah
     },
     filename:  (req, file, cb) => {
         // Penamaan file (gunakan timestamp untuk menghindari nama file yang sama)

@@ -39,7 +39,7 @@ app.use('/auth', authRoutes)
 app.use('/auth', registerRoutes)
 
 
-app.use('/asset', express.static('compro-api/public/uploads'));
+app.use('/asset', express.static('public/uploads'));
 
 
 app.listen(PORT, () => {
