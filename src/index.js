@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
+const baseURL = 'https://casatech.id/compro-api'
 const userRoutes = require('./routes/users');
 const blogRoutes = require('./routes/blogs');
 const companyRoutes = require('./routes/company');
@@ -41,6 +42,15 @@ app.use('/auth', registerRoutes)
 
 app.use('/asset', express.static('public/uploads'));
 
+app.use((req, res, next) => {
+  req.baseURL = baseURL;
+  next();
+});
+
+app.use((req, res, next) => {
+  res.baseURL = baseURL;
+  next();
+});
 
 app.listen(PORT, () => {
     console.log(`server berjalan di port ${PORT}`)
