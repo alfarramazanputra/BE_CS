@@ -1,5 +1,7 @@
 require('dotenv').config()
 const PORT = process.env.PORT || 4005;
+const BASE_URL = process.env.base_url;
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -43,9 +45,10 @@ app.get('/ping', (req, res) => {
   });
 
 
-app.use('/asset', express.static('public/uploads'));
+app.use(`/${BASE_URL}/asset`, express.static('public/uploads'));
 
 
 app.listen(PORT, () => {
     console.log(`server berjalan di port ${PORT}`)
+    console.log(`Base URL: ${BASE_URL}`);
 })
