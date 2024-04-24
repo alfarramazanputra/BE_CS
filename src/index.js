@@ -43,7 +43,7 @@ app.get('/ping', (req, res) => {
   });
 
 
-app.use('/asset', express.static('public/uploads'));
+app.use('/asset', express.static('public/uploads/compro-api'));
 
 
 app.listen(PORT, () => {
