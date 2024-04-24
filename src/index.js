@@ -38,6 +38,10 @@ app.use('/testimoni', testimoniRoutes)
 app.use('/auth', authRoutes)
 app.use('/auth', registerRoutes)
 
+app.get('/ping', (req, res) => {
+    res.send('pong');
+  });
+
 
 app.use('/asset', express.static('public/uploads'));
 
