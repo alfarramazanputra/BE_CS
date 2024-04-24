@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config()
 const PORT = process.env.PORT || 4005;
 const express = require('express');
 const cors = require('cors');
@@ -24,26 +24,24 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Define base URL
-const base_url = "https://casatech.id/compro-api";
+app.use(verifyToken)
+app.use('/users', userRoutes)
+app.use('/blog', blogRoutes)
+app.use('/company', companyRoutes)
+app.use('/culture', cultureRoutes)
+app.use('/innovation', innovationRoutes)
+app.use('/portfolio', portfolioRoutes)
+app.use('/service', serviceRoutes)
+app.use('/solution', solutionRoutes)
+app.use('/team', teamRoutes)
+app.use('/testimoni', testimoniRoutes)
+app.use('/auth', authRoutes)
+app.use('/auth', registerRoutes)
 
-app.use(verifyToken);
-app.use('/users', userRoutes);
-app.use('/blog', blogRoutes);
-app.use('/company', companyRoutes);
-app.use('/culture', cultureRoutes);
-app.use('/innovation', innovationRoutes);
-app.use('/portfolio', portfolioRoutes);
-app.use('/service', serviceRoutes);
-app.use('/solution', solutionRoutes);
-app.use('/team', teamRoutes);
-app.use('/testimoni', testimoniRoutes);
-app.use('/auth', authRoutes);
-app.use('/auth', registerRoutes);
 
-// Modify asset route to use base_url
-app.use('/asset', express.static(`${base_url}/public/uploads`));
+app.use('/asset', express.static('public/uploads'));
+
 
 app.listen(PORT, () => {
-    console.log(`server berjalan di port ${PORT}`);
-});
+    console.log(`server berjalan di port ${PORT}`)
+})
