@@ -1,6 +1,6 @@
 require('dotenv').config()
-const PORT = process.env.PORT || 4005;
-const BASE_URL = process.env.base_url;
+const PORT = process.env.PORT || 4000;
+// const BASE_URL = process.env.base_url;
 
 const express = require('express');
 const cors = require('cors');
@@ -40,15 +40,11 @@ app.use('/testimoni', testimoniRoutes)
 app.use('/auth', authRoutes)
 app.use('/auth', registerRoutes)
 
-app.get('/ping', (req, res) => {
-    res.send('pong');
-  });
-
 
 app.use('/asset', express.static('public/uploads'));
 
 
 app.listen(PORT, () => {
     console.log(`server berjalan di port ${PORT}`)
-    console.log(`Base URL: ${BASE_URL}`);
+    // console.log(`Base URL: ${BASE_URL}`);
 })
