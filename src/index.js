@@ -26,7 +26,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/image', express.static('public/uploads'));
+app.use('/public/uploads', express.static('public/uploads'));
 
 app.use(verifyToken)
 app.use('/users', userRoutes)
@@ -41,9 +41,6 @@ app.use('/team', teamRoutes)
 app.use('/testimoni', testimoniRoutes)
 app.use('/auth', authRoutes)
 app.use('/auth', registerRoutes)
-
-
-
 
 
 app.listen(PORT, () => {
