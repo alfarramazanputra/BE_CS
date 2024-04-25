@@ -3,7 +3,9 @@ const secretAccessToken = '6237i2ugrui2g73r82gr272tguw82327iufhiuwifg982ysbvi';
 
 const verifyToken = (req, res, next) => {
     // penecualian untuk token
-    if (req.originalUrl === '/auth/login' || req.originalUrl === '/auth/register' || req.originalUrl === '/image') {
+    const exceptions = ['/auth/login', '/auth/register', '/image'];
+
+    if (exceptions.includes(req.originalUrl)) {
         return next();
     }
 
