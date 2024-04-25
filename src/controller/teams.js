@@ -1,4 +1,5 @@
 const teamModels = require('../models/teams');
+const baseUrl = process.env.BASE_URL;
 
 const getAlldatateams = async (req,res) => {
     try {
@@ -6,7 +7,8 @@ const getAlldatateams = async (req,res) => {
 
         res.json({
             message: "GET ALL DATA SUCCES",
-            data: data
+            data: data,
+            base_url: baseUrl
         })
     } catch (error) {
         res.status(500).json({
