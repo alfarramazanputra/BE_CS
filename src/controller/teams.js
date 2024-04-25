@@ -7,8 +7,7 @@ const getAlldatateams = async (req,res) => {
 
         res.json({
             message: "GET ALL DATA SUCCES",
-            data: data,
-            base_url: baseUrl
+            data: baseUrl ,data
         })
     } catch (error) {
         res.status(500).json({
