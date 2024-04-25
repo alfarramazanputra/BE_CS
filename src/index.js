@@ -1,5 +1,5 @@
 require('dotenv').config()
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4005;
 // const BASE_URL = process.env.base_url;
 
 const express = require('express');
@@ -41,7 +41,7 @@ app.use('/auth', authRoutes)
 app.use('/auth', registerRoutes)
 
 
-app.use('/asset', express.static('public/uploads'));
+app.use('/image', express.static('public/uploads'));
 
 
 app.listen(PORT, () => {
