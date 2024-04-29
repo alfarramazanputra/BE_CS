@@ -37,7 +37,7 @@ const login = async (req, res) => {
         }
 
         // Buat token JWT
-        const token = jwt.sign({ username: dataUser[0][0].username }, secretAccessToken);
+        const token = jwt.sign({ username: dataUser[0][0].username, id: dataUser[0][0].id }, secretAccessToken);
 
         // Jika username dan password cocok, kirim respons berhasil bersama dengan token
         res.json({
