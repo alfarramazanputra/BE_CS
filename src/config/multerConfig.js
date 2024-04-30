@@ -11,7 +11,23 @@ const storage = multer.diskStorage({
     }
 });
 
+// Fungsi untuk memeriksa tipe file yang diterima
+const fileFilter = (req, file, cb) => {
+    // Hanya terima file gambar
+    if (file.mimetype.startsWith('image/')) {
+        cb(null, true);
+    } else {
+        cb(new Error('Hanya file gambar yang diizinkan!'), false);
+    }
+};
+
 // Inisialisasi multer dengan konfigurasi yang telah ditentukan
-const upload = multer({ storage: storage });
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 5 * 1024 * 1024 // Batasan ukuran file (5 MB)
+    },
+    fileFilter: fileFilter
+});
 
 module.exports = upload;
