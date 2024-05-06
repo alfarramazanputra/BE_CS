@@ -138,11 +138,11 @@ const updateDataCompany = async (req, res) => {
     const image_aboutPath = image_about ? image_about[0].path : null;
     const image_clientPath = image_client ? image_client[0].path : null;
 
-    if (!req.files['image_company'] || !req.files['image_about'] || !req.files['image_client']) {
-        return res.status(400).json({
-            message: "All data must be filled in."
-        });
-    }
+    // if (!req.files['image_company'] || !req.files['image_about'] || !req.files['image_client']) {
+    //     return res.status(400).json({
+    //         message: "All data must be filled in."
+    //     });
+    // }
 
     try {
         await companyModels.updateDataCompany(
@@ -259,7 +259,7 @@ const updateAbout = async (req, res) => {
     const image_aboutPath = image_about ? image_about[0].path : null;
 
     try {
-        await companyModels.updateAbout(            image_aboutPath, description_about, visi, misi, id);
+        await companyModels.updateAbout(image_aboutPath, description_about, visi, misi, id);
         res.json({
             message: "UPDATE DATA SUCCESS",
             data: {
