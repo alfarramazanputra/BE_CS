@@ -134,15 +134,15 @@ const updateDataCompany = async (req, res) => {
         map, } = req.body;
     const { image_company, image_about, image_client } = req.files;
     
-    // const image_companyPath = image_company ? image_company[0].path : null;
-    // const image_aboutPath = image_about ? image_about[0].path : null;
-    // const image_clientPath = image_client ? image_client[0].path : null;
+    const image_companyPath = image_company ? image_company[0].path : null;
+    const image_aboutPath = image_about ? image_about[0].path : null;
+    const image_clientPath = image_client ? image_client[0].path : null;
 
-    // if (!req.files['image_company'] || !req.files['image_about'] || !req.files['image_client']) {
-    //     return res.status(400).json({
-    //         message: "All data must be filled in."
-    //     });
-    // }
+    if (!req.files['image_company'] || !req.files['image_about'] || !req.files['image_client']) {
+        return res.status(400).json({
+            message: "All data must be filled in."
+        });
+    }
 
     try {
         await companyModels.updateDataCompany(
