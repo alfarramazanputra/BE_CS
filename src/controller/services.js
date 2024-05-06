@@ -110,24 +110,63 @@ const createDataservices = async (req, res) => {
     
 // }
 
+// const updateDataservices = async (req, res) => {
+//     const { id } = req.params;
+//     const { tittle, description } = req.body;
+//     const imagePath = req.file.path;
+
+//     try {
+//         if (!tittle || !description || !imagePath) {
+//             return res.status(400).json({
+//                 message: "Please provide title, description, and image path"
+//             });
+//         }
+
+//         await serviceModels.updateDataservices(tittle, description, imagePath, id);
+//         res.json({
+//             message: "UPDATE DATA SUCCESS",
+//             data: { id, tittle, description, image: imagePath }
+//         });
+//     } catch (error) {
+//         res.status(500).json({
+//             message: "UPDATE DATA ERROR",
+//             serverMessage: error,
+//         });
+//     }
+// }
 const updateDataservices = async (req, res) => {
     const { id } = req.params;
     const { tittle, description } = req.body;
-    const imagePath = req.file.path;
+    let imagePath; // Deklarasikan imagePath di sini
 
     try {
+        // Periksa apakah req.file didefinisikan dan memiliki properti 'path'
+        if (req.file && req.file.path) {
+            imagePath = req.file.path; // Set imagePath jika req.file didefinisikan dan memiliki properti 'path'
+        } else {
+            // Tangani kasus di mana req.file tidak didefinisikan atau tidak memiliki properti 'path'
+            return res.status(400).json({
+                message: "Please provide image file"
+            });
+        }
+
+        // Periksa apakah tittle, description, dan imagePath telah diberikan
         if (!tittle || !description || !imagePath) {
             return res.status(400).json({
                 message: "Please provide title, description, and image path"
             });
         }
 
+        // Panggil serviceModels.updateDataservices dengan parameter yang diperlukan
         await serviceModels.updateDataservices(tittle, description, imagePath, id);
+
+        // Kirim respons jika berhasil
         res.json({
             message: "UPDATE DATA SUCCESS",
             data: { id, tittle, description, image: imagePath }
         });
     } catch (error) {
+        // Tangani kesalahan jika terjadi
         res.status(500).json({
             message: "UPDATE DATA ERROR",
             serverMessage: error,
