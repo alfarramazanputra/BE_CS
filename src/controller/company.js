@@ -134,15 +134,13 @@ const updateDataCompany = async (req, res) => {
         map, } = req.body;
     const { image_company, image_about, image_client } = req.files;
     
-    const image_companyPath = image_company ? image_company[0].path : null;
-    const image_aboutPath = image_about ? image_about[0].path : null;
-    const image_clientPath = image_client ? image_client[0].path : null;
+    let image_companyPath = null;
+    let image_aboutPath = null;
+    let image_clientPath = null;
 
-    if (!req.files['image_company'] || !req.files['image_about'] || !req.files['image_client']) {
-        return res.status(400).json({
-            message: "All data must be filled in."
-        });
-    }
+    if (image_company) image_companyPath = image_company[0].path;
+    if (image_about) image_aboutPath = image_about[0].path;
+    if (image_client) image_clientPath = image_client[0].path;
 
     try {
         await companyModels.updateDataCompany(
@@ -202,12 +200,14 @@ const updateDataCompany = async (req, res) => {
     }
 };
 
+
 const updateCompany = async (req, res) => {
     const {id} = req.params;
     const { company_name, tittle_company, description_company } = req.body;
     const { image_company } = req.files;
 
-    const image_companyPath = image_company ? image_company[0].path : null;
+    let image_companyPath = null;
+    if (image_company) image_companyPath = image_company[0].path;
 
     try {
         await companyModels.updateCompany(company_name, image_companyPath, tittle_company, description_company, id);
@@ -233,7 +233,8 @@ const updateClient = async (req, res) => {
     const { client, sponsor, rating } = req.body;
     const { image_client } = req.files;
 
-    const image_clientPath = image_client ? image_client[0].path : null;
+    let image_clientPath = null;
+    if (image_client) image_clientPath = image_client[0].path;
 
     try {
         await companyModels.updateClient(client, sponsor, rating, image_clientPath, id);
@@ -256,7 +257,8 @@ const updateAbout = async (req, res) => {
     const { description_about, visi, misi } = req.body;
     const { image_about } = req.files;
 
-    const image_aboutPath = image_about ? image_about[0].path : null;
+    let image_aboutPath = null;
+    if (image_about) image_aboutPath = image_about[0].path;
 
     try {
         await companyModels.updateAbout(image_aboutPath, description_about, visi, misi, id);
