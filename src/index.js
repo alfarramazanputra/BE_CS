@@ -42,7 +42,6 @@ app.use('/testimoni', testimoniRoutes)
 app.use('/auth', authRoutes)
 app.use('/auth', registerRoutes)
 
-
 app.listen(PORT, () => {
     console.log(`server berjalan di port ${PORT}`)
     // console.log(`Base URL: ${baseUrl}`);
