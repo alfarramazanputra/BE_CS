@@ -91,9 +91,9 @@ const updateBlog = async (req, res) => {
     const imagePath = req.file.path;
 
     try {
-        if (!tittle || !description || !imagePath) {
+        if (!tittle || !description) {
             return res.status(400).json({
-                message: "Please provide title, description, and image path"
+                message: "Please provide title, description"
             });
         }
         

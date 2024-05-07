@@ -47,9 +47,9 @@ const updateDataculture = async (req, res) => {
     const imagePath = req.file.path; // Assuming Multer has already uploaded the file
     try {
         
-        if (!imagePath || !tittle_culture || !description_culture) {
+        if (!tittle_culture || !description_culture) {
             return res.status(400).json({
-                message: "Please provide title, description, and image path"
+                message: "Please provide title, description"
             });
         }
 

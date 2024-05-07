@@ -91,9 +91,9 @@ const updateDatateams = async (req, res) => {
     const imagePath = req.file.path;
 
     try {
-        if (!name || !position || !imagePath) {
+        if (!name || !position) {
             return res.status(400).json({
-                message: "Please provide name, position, and image path"
+                message: "Please provide name, position"
             });
         }
 

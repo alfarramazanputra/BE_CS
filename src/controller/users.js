@@ -120,9 +120,9 @@ const updateUsers = async (req, res) => {
     const imagePath = req.file.path;
 
     try {
-        if (!username || !password || !fullname || !place_date_birth || !position || !addres || !imagePath) {
+        if (!username || !password || !fullname || !place_date_birth || !position || !addres) {
             return res.status(400).json({
-                message: "Please provide username, password, and image path"
+                message: "Please provide all"
             });
         }
 
