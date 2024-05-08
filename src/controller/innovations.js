@@ -87,7 +87,7 @@ const updateDataInnovations = async (req, res) => {
     try {
         if (!tittle || !description) {
             return res.status(400).json({
-                message: "Please provide title, description"
+                message: "Please provide title or description!"
             });
         }
         
