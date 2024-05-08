@@ -34,10 +34,10 @@ const registerUser = async(username, password, fullname, place_date_birth, posit
 //     return dbPool.execute( sqlQuery );
 // }
 
-const updateUsers = async (username, password, fullname, place_date_birth, position, imagePath, addres, id) => {
+const updateUsers = async (fullname, place_date_birth, position, imagePath, addres, id) => {
     try {
-        const sqlQuery = `UPDATE tb_user SET username=?, password=?, fullname=?, place_date_birth=?, position=?, image=?, addres=? WHERE id=?`;
-        await dbPool.execute(sqlQuery, [username, password, fullname, place_date_birth, position, imagePath, addres, id]);
+        const sqlQuery = `UPDATE tb_user SET fullname=?, place_date_birth=?, position=?, image=?, addres=? WHERE id=?`;
+        await dbPool.execute(sqlQuery, [fullname, place_date_birth, position, imagePath, addres, id]);
     } catch (error) {
         throw error;
     }

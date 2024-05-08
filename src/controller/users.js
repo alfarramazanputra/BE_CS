@@ -116,22 +116,20 @@ const getUsersbyUsername = async (req,res) => {
 
 const updateUsers = async (req, res) => {
     const {id} = req.params;
-    const {username, password, fullname, place_date_birth, position, addres} = req.body;
+    const {fullname, place_date_birth, position, addres} = req.body;
     const imagePath = req.file.path;
 
     try {
-        if (!username || !password || !fullname || !place_date_birth || !position || !addres) {
+        if (!fullname || !place_date_birth || !position || !addres) {
             return res.status(400).json({
                 message: "Please provide all"
             });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        await userModels.updateUsers(username, hashedPassword, fullname, place_date_birth, position, imagePath, addres, id);
+        await userModels.updateUsers(fullname, place_date_birth, position, imagePath, addres, id);
         res.json({
             message: "UPDATE DATA SUCCESS",
-            data: { id, username, fullname, place_date_birth, position, image: imagePath, addres }
+            data: { id, place_date_birth, position, image: imagePath, addres }
         });
     } catch (error) {
         res.status(500).json({
