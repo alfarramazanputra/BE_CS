@@ -1,6 +1,5 @@
 require('dotenv').config()
 const PORT = process.env.PORT || 4005;
-// const baseUrl = process.env.BASE_URL;
 
 const express = require('express');
 const cors = require('cors');
@@ -44,5 +43,4 @@ app.use('/auth', registerRoutes)
 
 app.listen(PORT, () => {
     console.log(`server berjalan di port ${PORT}`)
-    // console.log(`Base URL: ${baseUrl}`);
 })
