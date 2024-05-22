@@ -31,7 +31,7 @@ const createDataculture = async (req, res) => {
         await cultureModels.createDataculture(imagePath, tittle_culture, description_culture);
         res.status(201).json({
             message: "CREATE DATA SUCCESS",
-            data: { image: imagePath, tittle_culture, description_culture }
+            data: { image: imagePath, tittle_culture, description_culture, create_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({
@@ -57,7 +57,7 @@ const updateDataculture = async (req, res) => {
         await cultureModels.updateDataculture(imagePath, tittle_culture, description_culture, id);
         res.status(201).json({
             message: "UPDATE DATA SUCCESS",
-            data: { id, image: imagePath, tittle_culture, description_culture }
+            data: { id, image: imagePath, tittle_culture, description_culture, update_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({

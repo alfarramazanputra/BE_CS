@@ -41,6 +41,8 @@ const getAlldatateams = async (req,res) => {
 // };
 
 const createDatateams = async (req, res) => {
+    console.log(req.user.id);
+
     const { name, position } = req.body;
     const imagePath = req.file.path;
     try {
@@ -53,7 +55,7 @@ const createDatateams = async (req, res) => {
         await teamModels.createDatateams(name, position, imagePath);
         res.status(201).json({
             message: "CREATE DATA SUCCES",
-            data: { name, position, image: imagePath }
+            data: { name, position, image: imagePath, create_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({
@@ -100,7 +102,7 @@ const updateDatateams = async (req, res) => {
         await teamModels.updateDatateams(name, position, imagePath, id);
         res.json({
             message: "UPDATE DATA SUCCES",
-            data: { name, position, image: imagePath }
+            data: { name, position, image: imagePath, update_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({

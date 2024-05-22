@@ -49,7 +49,7 @@ const createDatatestimoni = async (req, res) => {
         await testimoniModels.createDatatestimoni(name, position, imagePath, description);
         res.status(201).json({
             message: "CREATE DATA SUCCESS",
-            data: { name, position, image: imagePath, description }
+            data: { name, position, image: imagePath, description, create_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({
@@ -90,7 +90,7 @@ const updateDatatestimoni= async (req, res) => {
         await testimoniModels.updateDatatestimoni(name, position, imagePath, description, id);
         res.json({
             message: "UPDATE DATA SUCCES",
-            data: {id, name, position, image: imagePath, description}
+            data: {id, name, position, image: imagePath, description, update_by:req.user.id}
         })
     } catch (error) {
         res.status(500).json({

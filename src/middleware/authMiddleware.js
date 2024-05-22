@@ -25,6 +25,7 @@ const verifyToken = (req, res, next) => {
         const decoded = jwt.verify(token, secretAccessToken);
         req.user = decoded;
         console.log(req.user);
+        console.log(decoded);
         next();
     } catch (error) {
         // Tangani kesalahan jika token tidak valid

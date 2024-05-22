@@ -1,6 +1,7 @@
 const companyModels = require('../models/company');
 
 const getAlldataCompany = async (req,res) => {
+    console.log(req.user);
     try {
         const [data] = await companyModels.getAlldataCompany();
 
@@ -101,7 +102,8 @@ const createCompany = async (req, res) => {
                 instagram,
                 youtube,
                 telegram,
-                map
+                map,
+                create_by:req.user.id
             }
         });
     } catch (error) {
@@ -190,6 +192,7 @@ const updateDataCompany = async (req, res) => {
                 youtube,
                 telegram,
                 map,
+                update_by:req.user.id
             }
         });
     } catch (error) {
@@ -217,7 +220,8 @@ const updateCompany = async (req, res) => {
                 image_client: image_companyPath,
                 company_name,
                 tittle_company,
-                description_company
+                description_company,
+                update_by:req.user.id
             }
         });
     } catch (error) {
@@ -242,7 +246,7 @@ const updateClient = async (req, res) => {
             message: "UPDATE DATA SUCCESS",
             data: {
                 image_client: image_clientPath,
-                client, sponsor, rating }
+                client, sponsor, rating, update_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({
@@ -268,7 +272,7 @@ const updateAbout = async (req, res) => {
                 image_about: image_aboutPath,
                 description_about,
                 visi,
-                misi }
+                misi, update_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({
@@ -312,7 +316,8 @@ const updatepersonal = async (req, res) => {
                 instagram,
                 youtube,
                 telegram,
-                map 
+                map,
+                update_by:req.user.id
             }
         });
     } catch (error) {

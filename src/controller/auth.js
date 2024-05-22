@@ -19,6 +19,7 @@ const login = async (req, res) => {
     try {
         // Mengambil data pengguna dari database berdasarkan username
         const dataUser = await userModels.getUsersbyUsername(username);
+        console.log(dataUser);
 
         // Memeriksa apakah pengguna ditemukan
         if (!dataUser) {
@@ -38,6 +39,8 @@ const login = async (req, res) => {
 
         // Buat token JWT
         const token = jwt.sign({ username: dataUser[0][0].username, id: dataUser[0][0].id }, secretAccessToken);
+        console.log({ username: dataUser[0][0].username, id: dataUser[0][0].id });
+        console.log(token);
 
         // Jika username dan password cocok, kirim respons berhasil bersama dengan token
         res.json({

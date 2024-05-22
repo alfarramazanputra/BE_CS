@@ -129,7 +129,7 @@ const updateUsers = async (req, res) => {
         await userModels.updateUsers(fullname, place_date_birth, position, imagePath, addres, id);
         res.json({
             message: "UPDATE DATA SUCCESS",
-            data: { id, place_date_birth, position, image: imagePath, addres }
+            data: { id, place_date_birth, position, image: imagePath, addres, update_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({

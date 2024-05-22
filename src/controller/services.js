@@ -78,7 +78,7 @@ const createDataservices = async (req, res) => {
         await serviceModels.createDataservices(tittle, description, imagePath);
         res.status(201).json({
             message: "CREATE DATA SUCCESS",
-            data: { tittle, description, image: imagePath }
+            data: { tittle, description, image: imagePath, create_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({
@@ -125,7 +125,7 @@ const updateDataservices = async (req, res) => {
         await serviceModels.updateDataservices(tittle, description, imagePath, id);
         res.json({
             message: "UPDATE DATA SUCCESS",
-            data: { id, tittle, description, image: imagePath }
+            data: { id, tittle, description, image: imagePath, update_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({

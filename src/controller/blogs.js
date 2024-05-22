@@ -53,7 +53,7 @@ const createDataBlog = async (req, res) => {
         await blogModels.createDataBlog(imagePath, tittle, description);
         res.status(201).json({
             message: "CREATE DATA SUCCES",
-            data: { image: imagePath, tittle, description }
+            data: { image: imagePath, tittle, description, create_by:req.user.id }
         })
     } catch (error) {
         res.status(500).json({
@@ -100,7 +100,7 @@ const updateBlog = async (req, res) => {
         await blogModels.updateBlog(imagePath, tittle, description, id);
         res.json({
             message: "UPDATE DATA SUCCESS",
-            data: { id, image: imagePath, tittle, description }
+            data: { id, image: imagePath, tittle, description, update_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({

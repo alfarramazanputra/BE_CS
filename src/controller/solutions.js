@@ -29,7 +29,7 @@ const createDatasolutions = async (req, res) => {
         await solutionModels.createDatasolutions(body);
         res.status(201).json({
             message: "CREATE DATA SUCCES",
-            data: body
+            data: { body, create_by:req.user.id }
         })
     } catch (error) {
         res.status(500).json({
@@ -50,7 +50,8 @@ const updateDatasolutions = async (req, res) => {
             message: "UPDATE DATA SUCCES",
             data: {
                 id: id,
-                body
+                body,
+                update_by:req.user.id
             },
         })
     } catch (error) {

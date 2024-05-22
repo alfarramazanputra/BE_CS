@@ -53,7 +53,7 @@ const createDataPortfolio = async (req, res) => {
         await portofolioModels.createDataPortfolio(imagePath, title, software_name, description, amount);
         res.status(201).json({
             message: "CREATE DATA SUCCES",
-            data: { image: imagePath, title, software_name, description, amount }
+            data: { image: imagePath, title, software_name, description, amount, create_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({
@@ -100,7 +100,7 @@ const updateDataPortfolio = async (req, res) => {
         await portofolioModels.updateDataPortfolio( imagePath, title, software_name, description, amount, id );
         res.json({
             message: "UPDATE DATA SUCCESS",
-            data: { id, image: imagePath, title, software_name, description, amount }
+            data: { id, image: imagePath, title, software_name, description, amount, update_by:req.user.id }
         });
     } catch (error) {
         res.status(500).json({
