@@ -17,50 +17,52 @@ const getAlldatasolutions = async (req,res) => {
 }
 
 const createDatasolutions = async (req, res) => {
-    const { body } = req;
+    const { title, description } = req.body;
+    const imagePath = req.file.path;
     //memeriksa apakah data sudah diisi semua
-    if(!body.title || !body.description){
-        return res.status(400).json({
-            message: "Semua data harus diisi."
-        });
-    }
-
     try {
-        await solutionModels.createDatasolutions(body);
+        if(!title || !description || !imagePath){
+            return res.status(400).json({
+                message: "Please provide title, description, and image."
+            });
+        }
+    
+        await solutionModels.createDatasolutions(title, description, imagePath);
         res.status(201).json({
             message: "CREATE DATA SUCCES",
-            data: { body, create_by:req.user.id }
-        })
+            data: { title, description, image: imagePath, create_by:req.user.id }
+        });
     } catch (error) {
         res.status(500).json({
             message: "CREATE DATA ERROR",
             serverMessage: error,
-        })
+        });
     }
     
 }
 
 const updateDatasolutions = async (req, res) => {
-
     const {id} = req.params;
-    const {body} = req;
+    const { title, description } = req.body;
+    const imagePath = req.file.path;
     try {
-        await solutionModels.updateDatasolutions(body, id);
+        if(!title || !description){
+            return res.status(400).json({
+                message: "Please provide title and description."
+            });
+        }
+
+        await solutionModels.updateDatasolutions(title, description, imagePath, id);
         res.json({
             message: "UPDATE DATA SUCCES",
-            data: {
-                id: id,
-                body,
-                update_by:req.user.id
-            },
-        })
+            data: { title, description, image: imagePath, update_by:req.user.id }
+        });
     } catch (error) {
         res.status(500).json({
             message: "UPDATE DATA ERROR",
             serverMessage: error,
-        })
+        });
     }
-    
 }
 
 const deleteDatasolutions = async (req, res) => {

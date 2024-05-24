@@ -6,16 +6,23 @@ const getAlldatasolutions = () => {
     return dbPool.execute(sqlQuery);
 }
 
-const createDatasolutions = (body) => {
-    const sqlQuery = `INSERT INTO tb_solution (title, description) VALUES('${body.title}', '${body.description}')`;
-
-    return dbPool.execute(sqlQuery);
+const createDatasolutions = async (title, description, imagePath) => {
+    try {
+        const sqlQuery = `INSERT INTO tb_solution (title, description, image) VALUES (?, ?, ?)`;
+        const[rows, fields] = await dbPool.execute(sqlQuery, [title, description, imagePath]);
+        return rows;
+    } catch (error) {
+        throw error;
+    }
 }
 
-const updateDatasolutions = (body, id) => {
-    const sqlQuery = `UPDATE tb_solution SET title='${body.title}', description='${body.description}' WHERE id=${id}`;
-
-    return dbPool.execute(sqlQuery);
+const updateDatasolutions = async (title, description, imagePath, id) => {
+    try {
+        const sqlQuery = `UPDATE tb_solution SET title=?, description=?, image=? WHERE id=?`;
+        await dbPool.execute(sqlQuery, [title, description, imagePath, id]);
+    } catch (error) {
+        throw error;
+    }
 }
 
 const deleteDatasolutions = (id) => {
